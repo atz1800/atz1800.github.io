@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.atz1800.shastracker",
+      "sha256_cert_fingerprints": [
+        "47:D5:BF:0E:5B:AE:63:D8:AA:F5:24:17:92:95:4A:7A:F6:3D:53:FA:F1:AC:11:7E:EE:48:2F:BF:0A:CC:9B:6B"
+      ]
+    }
+  }
+]
