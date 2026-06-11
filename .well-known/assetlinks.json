@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.atz1800.shastracker",
       "sha256_cert_fingerprints": [
-        "47:D5:BF:0E:5B:AE:63:D8:AA:F5:24:17:92:95:4A:7A:F6:3D:53:FA:F1:AC:11:7E:EE:48:2F:BF:0A:CC:9B:6B"
+        "47:D5:BF:0E:5B:AE:63:D8:AA:F5:24:17:92:95:4A:7A:F6:3D:53:FA:F1:AC:11:7E:EE:48:2F:BF:0A:CC:9B:6B",
+        "B9:38:B9:E6:0C:9A:29:F7:51:00:54:D5:BC:46:B8:D1:7E:79:A6:72:3F:57:EC:EC:31:BC:D4:78:9F:3C:D6:96"
       ]
     }
   }
