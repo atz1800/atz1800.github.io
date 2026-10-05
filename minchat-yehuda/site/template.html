@@ -1,0 +1,211 @@
+<title>מנחת יהודה</title>
+<meta name="description" content="ספר מנחת יהודה על התורה לר׳ יהודה פתיה – ללימוד סימן אחר סימן">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Suez+One&family=Noto+Rashi+Hebrew:wght@400;600&family=Assistant:wght@400;600&display=swap">
+<style>
+/* פריסה: עמודת קריאה אחת ברוחב שורת ספר, תוכן עניינים כמגירה מימין; גוונים מאריחי לזורד ותכלת של בגדאד על נייר אפרפר */
+:root {
+  --paper: #f3f2ee;
+  --leaf: #fbfaf7;
+  --ink: #1d2433;
+  --muted: #5d6576;
+  --line: #d9d7d0;
+  --lapis: #23408e;
+  --tile: #1c7a78;
+  --tile-soft: #dcebea;
+  --mark: #a0522d;
+  --f-display: "Suez One", "Frank Ruhl Libre", serif;
+  --f-body: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --f-rashi: "Noto Rashi Hebrew", "Frank Ruhl Libre", serif;
+  --f-ui: "Assistant", "Segoe UI", Arial, sans-serif;
+  --fs: 1.22rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12161f; --leaf: #181d28; --ink: #e6e3da; --muted: #9aa1ae; --line: #2b3240;
+    --lapis: #93acf0; --tile: #5fc2bd; --tile-soft: #1d3434; --mark: #e0a07c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12161f; --leaf: #181d28; --ink: #e6e3da; --muted: #9aa1ae; --line: #2b3240;
+  --lapis: #93acf0; --tile: #5fc2bd; --tile-soft: #1d3434; --mark: #e0a07c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; overflow-x: clip; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-ui); direction: rtl; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--tile); outline-offset: 2px; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  display: flex; align-items: center; gap: .75rem;
+  padding: .6rem 16px; background: var(--paper); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; margin-inline-end: auto; }
+.brand b { font-family: var(--f-display); font-weight: 400; font-size: 1.45rem; color: var(--lapis); }
+.brand span { font-family: var(--f-rashi); font-size: .78rem; color: var(--muted); }
+.icon-btn { border: 1px solid var(--line); background: var(--leaf); border-radius: 6px; padding: .35rem .6rem; font-size: .9rem; }
+.icon-btn:hover { border-color: var(--tile); }
+
+.layout { display: grid; grid-template-columns: 19rem minmax(0, 1fr); min-height: calc(100% - 3.6rem); }
+.toc { border-left: 1px solid var(--line); background: var(--leaf); padding: 1rem 16px 3rem; overflow-y: auto;
+  position: sticky; top: 3.6rem; height: calc(100vh - 3.6rem); }
+.search { width: 100%; padding: .5rem .7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); font: inherit; }
+.progress { margin: .9rem 0 .4rem; font-size: .82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.meter { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--tile); width: 0; }
+.toc h3 { font-family: var(--f-display); font-weight: 400; color: var(--lapis); font-size: 1.05rem; margin: 1.2rem 0 .3rem; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+.toc a { display: grid; grid-template-columns: 2.4rem 1fr auto; gap: .3rem; align-items: baseline; padding: .32rem .4rem;
+  border-radius: 4px; color: var(--ink); text-decoration: none; font-size: .9rem; line-height: 1.35; }
+.toc a .n { font-family: var(--f-rashi); color: var(--tile); font-size: .82rem; }
+.toc a .t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.toc a .done { color: var(--tile); font-size: .8rem; }
+.toc a:hover { background: var(--tile-soft); }
+.toc a[aria-current="true"] { background: var(--tile-soft); font-weight: 600; }
+.hits { font-size: .85rem; color: var(--muted); margin-top: .6rem; }
+.hit { display: block; padding: .45rem .3rem; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+.hit small { display: block; color: var(--tile); font-size: .78rem; }
+.hit mark, .page mark { background: var(--tile-soft); color: inherit; }
+
+main { padding-block: 2rem 5rem; padding-inline: 16px; min-width: 0; }
+.page { max-width: 40rem; margin: 0 auto; }
+.crumb { font-family: var(--f-rashi); color: var(--muted); font-size: .9rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+.crumb .siman { color: var(--tile); }
+.page h1 { font-family: var(--f-display); font-weight: 400; color: var(--lapis); font-size: 1.75rem; line-height: 1.35;
+  margin: .4rem 0 1.4rem; text-wrap: balance; }
+.text { font-family: var(--f-body); font-size: var(--fs); line-height: 1.95; text-align: justify; }
+.text p { margin: 0 0 1em; }
+.q { color: var(--mark); font-size: .8em; cursor: help; }
+.gap { color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+.actions .learn { background: var(--tile); color: var(--leaf); border: 0; border-radius: 6px; padding: .55rem 1rem; font-weight: 600; }
+.actions .learn[aria-pressed="true"] { background: transparent; color: var(--tile); border: 1px solid var(--tile); }
+.nav { margin-inline-start: auto; display: flex; gap: .5rem; }
+.nav button { border: 1px solid var(--line); background: var(--leaf); border-radius: 6px; padding: .5rem .8rem; max-width: 14rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav button:disabled { opacity: .4; cursor: default; }
+.note { margin-top: 3rem; font-size: .82rem; color: var(--muted); line-height: 1.6; }
+.close-toc, .open-toc { display: none; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .toc { position: fixed; inset: 0 0 0 auto; width: min(22rem, 88vw); height: 100%; z-index: 30; transform: translateX(100%);
+    visibility: hidden; transition: transform .2s, visibility .2s; box-shadow: -8px 0 24px rgba(0,0,0,.18); padding-top: calc(1rem + env(safe-area-inset-top, 0px)); }
+  .toc.open { transform: none; visibility: visible; }
+  .open-toc, .close-toc { display: inline-block; }
+  .close-toc { margin-bottom: .8rem; }
+  .page h1 { font-size: 1.45rem; }
+  .text { text-align: right; }
+}
+@media (prefers-reduced-motion: reduce) { .toc { transition: none; } }
+</style>
+
+<header class="bar">
+  <button class="icon-btn open-toc" id="openToc" aria-label="תוכן העניינים">☰ סימנים</button>
+  <div class="brand"><b>מנחת יהודה</b><span>לרבי יהודה משה פתיה · בגדאד</span></div>
+  <button class="icon-btn" id="smaller" aria-label="הקטנת גופן">א-</button>
+  <button class="icon-btn" id="bigger" aria-label="הגדלת גופן">א+</button>
+  <button class="icon-btn" id="theme" aria-label="מצב תצוגה">◐</button>
+</header>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="תוכן העניינים">
+    <button class="icon-btn close-toc" id="closeToc">סגירה ✕</button>
+    <input class="search" id="q" type="search" placeholder="חיפוש בספר…" autocomplete="off">
+    <div class="progress"><span id="progText"></span><div class="meter"><i id="progBar"></i></div></div>
+    <div id="hits" class="hits" hidden></div>
+    <div id="list"></div>
+  </nav>
+  <main><article class="page" id="page"></article></main>
+</div>
+
+<script id="book" type="application/json">__BOOK_JSON__</script>
+<script>
+const BOOK = JSON.parse(document.getElementById('book').textContent);
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('my:' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('my:' + k, JSON.stringify(v)); } catch {} }
+};
+function gem(n) {
+  const u = ['', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט'], t = ['', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ'], h = ['', 'ק', 'ר', 'ש', 'ת'];
+  let s = h[Math.floor(n / 100)] || ''; n %= 100;
+  if (n === 15) s += 'טו'; else if (n === 16) s += 'טז'; else s += t[Math.floor(n / 10)] + u[n % 10];
+  return s.length > 1 ? s.slice(0, -1) + '״' + s.slice(-1) : s + '׳';
+}
+// רשימה שטוחה של כל הסימנים
+const flat = [];
+BOOK.sections.forEach((sec, si) => sec.chapters.forEach((ch, ci) => flat.push({ sec, ch, id: ch.id })));
+let learned = new Set(store.get('learned', []));
+let cur = store.get('last', flat[0].id);
+let fs = store.get('fs', 1.22);
+document.documentElement.style.setProperty('--fs', fs + 'rem');
+let theme = store.get('theme', null);
+if (theme) document.documentElement.dataset.theme = theme;
+
+const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+const fmt = s => esc(s).replace(/\[\?\]/g, '<span class="q" title="קריאה משוערת">[?]</span>').replace(/\[\.\.\.\]/g, '<span class="gap" title="קטע שאינו קריא במקור">[…]</span>');
+
+function renderToc() {
+  const list = document.getElementById('list');
+  list.innerHTML = BOOK.sections.map(sec => `<h3>${esc(sec.title)}</h3><ol>` + sec.chapters.map(ch =>
+    `<li><a href="#${ch.id}" data-id="${ch.id}"${ch.id === cur ? ' aria-current="true"' : ''}><span class="n">${ch.n ? gem(ch.n) : ''}</span><span class="t">${ch.ref ? '<b>' + esc(ch.ref) + ':</b> ' : ''}${esc(ch.title)}</span><span class="done">${learned.has(ch.id) ? '✓' : ''}</span></a></li>`).join('') + '</ol>').join('');
+  const total = flat.filter(f => f.ch.n).length, done = flat.filter(f => f.ch.n && learned.has(f.id)).length;
+  document.getElementById('progText').textContent = `נלמדו ${done} מתוך ${total} סימנים`;
+  document.getElementById('progBar').style.width = (100 * done / Math.max(total, 1)) + '%';
+}
+function show(id, scroll = true) {
+  const i = Math.max(0, flat.findIndex(f => f.id === id));
+  const { sec, ch } = flat[i]; cur = ch.id; store.set('last', cur);
+  const prev = flat[i - 1], next = flat[i + 1];
+  const term = document.getElementById('q').value.trim();
+  let body = ch.paras.map(p => `<p>${fmt(p)}</p>`).join('');
+  if (term.length > 1) body = body.replace(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), m => `<mark>${m}</mark>`);
+  document.getElementById('page').innerHTML = `
+    <div class="crumb"><span>${esc(sec.title)}${ch.ref ? ' · ' + esc(ch.ref) : ''}</span>${ch.n ? `<span class="siman">סימן ${gem(ch.n)}</span>` : ''}</div>
+    <h1>${esc(ch.title)}</h1>
+    <div class="text">${body}</div>
+    <div class="actions">
+      ${ch.n ? `<button class="learn" id="learn" aria-pressed="${learned.has(ch.id)}">${learned.has(ch.id) ? '✓ נלמד' : 'סימון כנלמד'}</button>` : ''}
+      <div class="nav">
+        <button id="prev" ${prev ? '' : 'disabled'} title="${prev ? esc(prev.ch.title) : ''}">→ ${prev ? (prev.ch.n ? 'סימן ' + gem(prev.ch.n) : esc(prev.ch.title)) : 'הקודם'}</button>
+        <button id="next" ${next ? '' : 'disabled'} title="${next ? esc(next.ch.title) : ''}">${next ? (next.ch.n ? 'סימן ' + gem(next.ch.n) : esc(next.ch.title)) : 'הבא'} ←</button>
+      </div>
+    </div>
+    <p class="note">הטקסט שוחזר מסריקת הספר (HebrewBooks מס׳ 33796) והוגה בעזרת מחשב. [?] מסמן מילה שקריאתה משוערת, ו-[…] מסמן קטע שלא היה קריא במקור.</p>`;
+  if (prev) document.getElementById('prev').onclick = () => go(prev.id);
+  if (next) document.getElementById('next').onclick = () => go(next.id);
+  const lb = document.getElementById('learn');
+  if (lb) lb.onclick = () => { learned.has(cur) ? learned.delete(cur) : learned.add(cur); store.set('learned', [...learned]); renderToc(); show(cur, false); };
+  renderToc();
+  if (scroll) window.scrollTo(0, 0);
+  document.getElementById('toc').classList.remove('open');
+}
+function go(id) { if (location.hash !== '#' + id) location.hash = id; else show(id); }
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+document.getElementById('list').addEventListener('click', e => { const a = e.target.closest('a'); if (a) { e.preventDefault(); go(a.dataset.id); } });
+
+document.getElementById('q').addEventListener('input', e => {
+  const term = e.target.value.trim(), hits = document.getElementById('hits'), list = document.getElementById('list');
+  if (term.length < 2) { hits.hidden = true; list.hidden = false; return; }
+  const res = [];
+  for (const f of flat) for (const p of f.ch.paras) {
+    const k = p.indexOf(term);
+    if (k >= 0) { res.push({ f, snip: p.slice(Math.max(0, k - 40), k + term.length + 50) }); if (res.length > 60) break; }
+  }
+  hits.hidden = false; list.hidden = true;
+  hits.innerHTML = `<div>${res.length ? res.length + (res.length > 60 ? '+' : '') + ' תוצאות' : 'לא נמצאו תוצאות'}</div>` +
+    res.map(r => `<a class="hit" href="#${r.f.id}" data-id="${r.f.id}"><small>${r.f.ch.n ? 'סימן ' + gem(r.f.ch.n) + ' · ' : ''}${esc(r.f.sec.title)}</small>…${esc(r.snip).replace(term, '<mark>' + esc(term) + '</mark>')}…</a>`).join('');
+});
+document.getElementById('hits').addEventListener('click', e => { const a = e.target.closest('a'); if (a) { e.preventDefault(); go(a.dataset.id); } });
+document.getElementById('openToc').onclick = () => document.getElementById('toc').classList.add('open');
+document.getElementById('closeToc').onclick = () => document.getElementById('toc').classList.remove('open');
+const setFs = d => { fs = Math.min(1.8, Math.max(.95, +(fs + d).toFixed(2))); document.documentElement.style.setProperty('--fs', fs + 'rem'); store.set('fs', fs); };
+document.getElementById('bigger').onclick = () => setFs(.08);
+document.getElementById('smaller').onclick = () => setFs(-.08);
+document.getElementById('theme').onclick = () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  theme = dark ? 'light' : 'dark'; document.documentElement.dataset.theme = theme; store.set('theme', theme);
+};
+show(location.hash.length > 1 && flat.some(f => f.id === location.hash.slice(1)) ? location.hash.slice(1) : cur, false);
+</script>
